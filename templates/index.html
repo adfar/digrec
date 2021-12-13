@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Draw</title>
+        <link rel="stylesheet" href="static/styles.css">
+    </head>
+    <body>
+        <div id="draw">
+            <form action="" method="POST">
+                <canvas id="canvas" width="400" height="400"></canvas>
+                <div id="buttons">
+                    <button id="submit" class="form_button">Submit</button>
+                    <button  id="clear" class="form_button" type="button">Clear</button>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const clear = document.getElementById("clear");
+        clear.addEventListener("click", e => {
+            ctx.fillStyle = "#FFF";
+            ctx.fillRect(0, 0, 400, 400);
+        });
+
+        let draw = false;
+        let x = 0;
+        let y = 0;
+
+        canvas.addEventListener("mousedown", e => {
+            x = e.offsetX;
+            y = e.offsetY;
+            draw = true;
+        });
+
+        canvas.addEventListener("mousemove", e => {
+            if (draw == true) {
+                drawLine(ctx, x, y, e.offsetX, e.offsetY);
+                x = e.offsetX;
+                y = e.offsetY;
+            }
+        });
+
+        window.addEventListener("mouseup", e => {
+            drawLine(ctx, x, y, x + 1, y + 1);
+            draw = false;
+        });
+
+        function drawLine(ctx, x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+            ctx.closePath();
+        }
+    </script>
+</html>
