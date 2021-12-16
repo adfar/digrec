@@ -1,2 +1,7 @@
 Flask
 gunicorn
+binascii
+numpy
+tensorflow
+keras
+json

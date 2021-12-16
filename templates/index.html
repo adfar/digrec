@@ -5,9 +5,11 @@
         <link rel="stylesheet" href="static/styles.css">
     </head>
     <body>
+        {{ prediction }}
         <div id="draw">
             <form action="" method="POST">
-                <canvas id="canvas" width="400" height="400"></canvas>
+                <canvas id="canvas" width="28" height="28"></canvas>
+                <input type="hidden" id="imgData" name="imgData">
                 <div id="buttons">
                     <button id="submit" class="form_button">Submit</button>
                     <button  id="clear" class="form_button" type="button">Clear</button>
@@ -19,10 +21,20 @@
         const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext("2d");
 
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, 28, 28);
+
         const clear = document.getElementById("clear");
         clear.addEventListener("click", e => {
-            ctx.fillStyle = "#FFF";
-            ctx.fillRect(0, 0, 400, 400);
+            ctx.fillStyle = "#000";
+            ctx.fillRect(0, 0, 28, 28);
+        });
+
+        const submit = document.getElementById("submit");
+        submit.addEventListener("click", e => {
+            let imgData = canvas.toDataURL();
+            imgData = imgData.substring(imgData.indexOf(',') + 1).toString();
+            document.getElementById("imgData").value = imgData;
         });
 
         let draw = false;
@@ -48,9 +60,28 @@
             draw = false;
         });
 
+        canvas.addEventListener("touchstart", e => {
+            let rect = e.target.getBoundingClientRect();
+            x = e.touches[0].pageX - rect.left;
+            y = e.touches[0].pageY - rect.top;
+            draw = true;
+        });
+
+        canvas.addEventListener("touchmove", e => {
+            if (draw === true) {
+                drawLine(ctx, x, y, e.touches[0].pageX, e.touches[0].pageY);
+                x = e.touches[0].pageX;
+                y = e.touches[0].pageY;
+            }       
+        });
+
+        window.addEventListener("touchend", e => {
+            draw = false;
+        });
+
         function drawLine(ctx, x1, y1, x2, y2) {
             ctx.beginPath();
-            ctx.strokeStyle = "black";
+            ctx.strokeStyle = "#FFF";
             ctx.lineWidth = 2;
             ctx.moveTo(x1, y1);
             ctx.lineTo(x2, y2);
