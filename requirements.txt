@@ -3,4 +3,3 @@ gunicorn
 numpy
 tensorflow
 keras
-json
