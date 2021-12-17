@@ -3,4 +3,4 @@ gunicorn
 numpy
 tensorflow-cpu
 keras
-PIL
+Pillow
