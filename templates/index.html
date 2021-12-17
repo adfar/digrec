@@ -9,7 +9,7 @@
         {{ prediction }}
         <div id="draw">
             <form action="" method="POST">
-                <canvas id="canvas" width="400" height="400"></canvas>
+                <canvas id="canvas" width=400 height=400></canvas>
                 <input type="hidden" id="imgData" name="imgData">
                 <div id="buttons">
                     <button id="submit" class="form_button">Submit</button>
@@ -63,16 +63,16 @@
         
         canvas.addEventListener("touchstart", e => {
             let rect = e.target.getBoundingClientRect();
-            x = e.touches[0].pageX ;
-            y = e.touches[0].pageY;
+            x = e.touches[0].clientX;
+            y = e.touches[0].clientY;
             draw = true;
         });
 
         canvas.addEventListener("touchmove", e => {
             if (draw === true) {
-                drawLine(ctx, x, y, e.touches[0].pageX, e.touches[0].pageY);
-                x = e.touches[0].pageX;
-                y = e.touches[0].pageY;
+                drawLine(ctx, x, y, e.touches[0].clientX, e.touches[0].clientY);
+                x = e.touches[0].clientX;
+                y = e.touches[0].clientY;
             }       
         });
 
