@@ -61,8 +61,9 @@
             draw = false;
         });
         
+        let rect = canvas.getBoundingClientRect();
+
         canvas.addEventListener("touchstart", e => {
-            let rect = e.target.getBoundingClientRect();
             x = e.touches[0].pageX;
             y = e.touches[0].pageY;
             draw = true;
@@ -70,9 +71,9 @@
 
         canvas.addEventListener("touchmove", e => {
             if (draw === true) {
-                drawLine(ctx, x, y, e.touches[0].pageX, e.touches[0].pageY);
-                x = e.touches[0].pageX;
-                y = e.touches[0].pageY;
+                drawLine(ctx, x, y, e.touches[0].pageX - rect.left, e.touches[0].pageY - rect.top);
+                x = e.touches[0].pageX - rect.left;
+                y = e.touches[0].pageY - rect.top;
             }       
         });
 
