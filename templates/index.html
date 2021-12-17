@@ -64,8 +64,8 @@
         let rect = canvas.getBoundingClientRect();
 
         canvas.addEventListener("touchstart", e => {
-            x = e.touches[0].pageX;
-            y = e.touches[0].pageY;
+            x = e.touches[0].pageX - rect.left;
+            y = e.touches[0].pageY - rect.top;
             draw = true;
         });
 
