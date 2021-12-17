@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Draw</title>
         <link rel="stylesheet" href="static/styles.css">
     </head>
@@ -8,7 +9,7 @@
         {{ prediction }}
         <div id="draw">
             <form action="" method="POST">
-                <canvas id="canvas" width="28" height="28"></canvas>
+                <canvas id="canvas" width="400" height="400"></canvas>
                 <input type="hidden" id="imgData" name="imgData">
                 <div id="buttons">
                     <button id="submit" class="form_button">Submit</button>
@@ -22,12 +23,12 @@
         const ctx = canvas.getContext("2d");
 
         ctx.fillStyle = "#000";
-        ctx.fillRect(0, 0, 28, 28);
+        ctx.fillRect(0, 0, 400, 400);
 
         const clear = document.getElementById("clear");
         clear.addEventListener("click", e => {
             ctx.fillStyle = "#000";
-            ctx.fillRect(0, 0, 28, 28);
+            ctx.fillRect(0, 0, 400, 400);
         });
 
         const submit = document.getElementById("submit");
@@ -59,7 +60,7 @@
             drawLine(ctx, x, y, x + 1, y + 1);
             draw = false;
         });
-
+        
         canvas.addEventListener("touchstart", e => {
             let rect = e.target.getBoundingClientRect();
             x = e.touches[0].pageX - rect.left;

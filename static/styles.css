@@ -1,6 +1,7 @@
 #canvas {
+    touch-action: none;
     display: block;
-    border: 1px solid black;
+    border: 10px solid red;
     margin: auto;
 }
 

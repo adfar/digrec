@@ -11,7 +11,7 @@ def pinger(data):
         f.write(binary)
 
 def resize(img):
-    image = tf.keras.preprocessing.image.load_img(img, color_mode="grayscale")
+    image = tf.keras.preprocessing.image.load_img(img, color_mode="grayscale", target_size=(28, 28), interpolation="bilinear")
     return image
 
 def to_json(img):
