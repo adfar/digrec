@@ -70,9 +70,9 @@
 
         canvas.addEventListener("touchmove", e => {
             if (draw === true) {
-                drawLine(ctx, x, y, e.touches[0].clientX, e.touches[0].clientY);
-                x = e.touches[0].clientX;
-                y = e.touches[0].clientY;
+                drawLine(ctx, x, y, e.touches[0].pageX, e.touches[0].pageY);
+                x = e.touches[0].pageX;
+                y = e.touches[0].pageY;
             }       
         });
 

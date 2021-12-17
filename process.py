@@ -4,6 +4,8 @@ import tensorflow as tf
 from tensorflow import keras
 import json
 
+model = keras.models.load_model("digits/0002")
+
 def pinger(data):
     binary = a2b_base64(data)
 
@@ -24,5 +26,4 @@ def to_json(img):
 def predict(img):
     image = np.array(img)
     image = image.reshape([1, 28, 28])
-    model = keras.models.load_model("digits/0002")
     return model.predict(image).argmax()
