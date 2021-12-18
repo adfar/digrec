@@ -9,7 +9,7 @@
         {{ prediction }}
         <div id="draw">
             <form action="" method="POST">
-                <canvas id="canvas" width=400 height=400></canvas>
+                <canvas id="canvas" width=56 height=56></canvas>
                 <input type="hidden" id="imgData" name="imgData">
                 <div id="buttons">
                     <button id="submit" class="form_button">Submit</button>
@@ -23,17 +23,17 @@
         const ctx = canvas.getContext("2d");
 
         ctx.fillStyle = "#000";
-        ctx.fillRect(0, 0, 400, 400);
+        ctx.fillRect(0, 0, 56, 56);
 
         const clear = document.getElementById("clear");
         clear.addEventListener("click", e => {
             ctx.fillStyle = "#000";
-            ctx.fillRect(0, 0, 400, 400);
+            ctx.fillRect(0, 0, 56, 56);
         });
 
         const submit = document.getElementById("submit");
         submit.addEventListener("click", e => {
-            let imgData = canvas.toDataURL();
+            let imgData = canvas.toDataURL('image/png', 1.0);
             imgData = imgData.substring(imgData.indexOf(',') + 1).toString();
             document.getElementById("imgData").value = imgData;
         });
@@ -84,7 +84,7 @@
         function drawLine(ctx, x1, y1, x2, y2) {
             ctx.beginPath();
             ctx.strokeStyle = "#FFF";
-            ctx.lineWidth = 6;
+            ctx.lineWidth = 3;
             ctx.moveTo(x1, y1);
             ctx.lineTo(x2, y2);
             ctx.stroke();
