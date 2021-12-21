@@ -4,7 +4,7 @@ import tensorflow as tf
 from tensorflow import keras
 import json
 
-model = keras.models.load_model("digits/0002")
+model = keras.models.load_model("bad_rec")
 
 def pinger(data):
     binary = a2b_base64(data)
