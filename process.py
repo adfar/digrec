@@ -27,3 +27,13 @@ def predict(img):
     image = np.array(img)
     image = image.reshape([1, 28, 28])
     return model.predict(image).argmax()
+
+def get_mapping():
+    mapping = {}
+    with open("mapping.txt", "r") as f:
+        for line in f:
+            line = line.strip().split(" ")
+            output = int(line[0])
+            char = int(line[1])
+            mapping[output] = char
+    return mapping
